@@ -9,6 +9,7 @@ import 'package:state_flutter_week_seve/provider/product_provider.dart';
 import 'package:state_flutter_week_seve/screens/cart_listing.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:watch_connectivity/watch_connectivity.dart';
+
 class ProductListing extends StatefulWidget {
   const ProductListing({super.key});
 
@@ -21,10 +22,13 @@ class _ProductListingState extends State<ProductListing> {
   String _receivedMessage = "No message received yet";
   late WatchConnectivity _watchConnectivity;
 
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+
+
     _watchConnectivity = WatchConnectivity();
     loadProducts();
 
@@ -64,6 +68,8 @@ class _ProductListingState extends State<ProductListing> {
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (_) => const CartListing()),
                   );
+
+                  // showBasicNotification();
                 },
               ),
               Positioned(
@@ -120,16 +126,16 @@ class _ProductListingState extends State<ProductListing> {
                 height: 40,
                 child: ElevatedButton(
                   onPressed: () {
-                    carts.addToCart(product_model);
+                    carts.addToCart(product_model, carts, _watchConnectivity);
 
-                    double cal_price = 0.0;
-                    for(var list in carts.cats)
-                      {
-                        cal_price += list.price;
-                      }
-                    String formattedPrice = cal_price.toStringAsFixed(2);
-
-                    sendToMobile(carts.counts.toString(),formattedPrice);
+                    // double cal_price = 0.0;
+                    // for(var list in carts.cats)
+                    //   {
+                    //     cal_price += list.price;
+                    //   }
+                    // String formattedPrice = cal_price.toStringAsFixed(2);
+                    //
+                    // sendToMobile(carts.counts.toString(),formattedPrice, product_model.name);
 
                   },
                   child: Text(
@@ -157,18 +163,19 @@ class _ProductListingState extends State<ProductListing> {
 
     );
   }
-  void sendToMobile(String items, String price) async {
-    if (await _watchConnectivity.isReachable) {
-      // Send a message to the mobile app
-      await _watchConnectivity.sendMessage({
-        "totalItems": items,
-        "totalPrice" : price
-      });
-
-
-      print("Message sent to Mobile");
-    } else {
-      print("Mobile app is not reachable");
-    }
-  }
+  // void sendToMobile(String items, String price, String name) async {
+  //   if (await _watchConnectivity.isReachable) {
+  //     // Send a message to the mobile app
+  //     await _watchConnectivity.sendMessage({
+  //       "totalItems": items,
+  //       "totalPrice" : price,
+  //       "itemName" : name
+  //     });
+  //
+  //
+  //     print("Message sent to Mobile");
+  //   } else {
+  //     print("Mobile app is not reachable");
+  //   }
+  // }
 }

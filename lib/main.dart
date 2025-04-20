@@ -7,9 +7,13 @@ import 'package:state_flutter_week_seve/screens/product_listing.dart';
 import 'package:is_wear/is_wear.dart';
 import 'package:state_flutter_week_seve/screens/product_summary.dart';
 
+
 final _isWearPlugin = IsWear();
 
+
 void main() async {
+
+
 
   WidgetsFlutterBinding.ensureInitialized();
   bool isWear = await _isWearPlugin.check()??false;

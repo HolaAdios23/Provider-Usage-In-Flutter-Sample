@@ -16,9 +16,15 @@ class CartListing extends StatefulWidget {
 class _CartListingState extends State<CartListing> {
 
   late WatchConnectivity _watchConnectivity;
+
+
+
   @override
   void initState() {
     super.initState();
+
+
+
     _watchConnectivity = WatchConnectivity();
     Provider.of<CartProvider>(context, listen: false).loadCart();
     Provider.of<CartProvider>(context, listen: false).counts;
