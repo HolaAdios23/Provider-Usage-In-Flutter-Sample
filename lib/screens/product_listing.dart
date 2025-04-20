@@ -29,6 +29,8 @@ class _ProductListingState extends State<ProductListing> {
     loadProducts();
 
 
+
+
   }
 
 
@@ -37,6 +39,8 @@ class _ProductListingState extends State<ProductListing> {
     await Provider.of<ProductProvider>(context, listen: false).fetchProducts();
     await Provider.of<CartProvider>(context, listen: false).loadCart();
     await Provider.of<CartProvider>(context, listen: false).counts;
+
+
   }
 
 

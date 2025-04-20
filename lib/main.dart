@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:state_flutter_week_seve/provider/cart_provider.dart';
 import 'package:state_flutter_week_seve/provider/product_provider.dart';
 import 'package:state_flutter_week_seve/screens/product_listing.dart';
@@ -19,6 +20,7 @@ void main() async {
           
           ChangeNotifierProvider(create: (_) => ProductProvider()),
           ChangeNotifierProvider(create: (_) => CartProvider()),
+
         ],
 
           child: MyApp(isWear: isWear,)));

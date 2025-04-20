@@ -14,6 +14,8 @@ class CartProvider with ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
     final String? cartJson = prefs.getString('cartItems');
 
+    //decrpypt
+
     if (cartJson != null) {
       final List<dynamic> decoded = jsonDecode(cartJson);
       _carts.clear();
@@ -22,17 +24,13 @@ class CartProvider with ChangeNotifier {
     }
   }
 
-  Future<void> update_item_watch() async
-  {
-
-
-  }
 
   Future<void> addToCart(Product_Model product_model) async {
     _carts.add(product_model);
     final prefs = await SharedPreferences.getInstance();
     final String encoded =
     jsonEncode(_carts.map((product) => product.toJson()).toList());
+    //encoded encrypt
     await prefs.setString('cartItems', encoded);
     notifyListeners();
   }
